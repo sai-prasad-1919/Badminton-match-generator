@@ -306,6 +306,50 @@ function TournamentView() {
           )
         }
 
+
+        <div className="stats-bar">
+
+          <div className="stat-card">
+
+            <h3>
+              Total Matches
+            </h3>
+
+            <p>
+              {tournament.allMatches.length}
+            </p>
+
+          </div>
+
+          <div className="stat-card">
+
+            <h3>
+              Completed
+            </h3>
+
+            <p>
+              {tournament.completedMatches.length}
+            </p>
+
+          </div>
+
+          <div className="stat-card">
+
+            <h3>
+              Remaining
+            </h3>
+
+            <p>
+              {
+                tournament.pendingMatches.length +
+                tournament.activeCourts.length
+              }
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
 
       <div className="tournament-grid">
