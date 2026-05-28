@@ -19,7 +19,7 @@
 .tournament-grid {
   display: grid;
 
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
 
   gap: 20px;
 }
@@ -228,4 +228,158 @@
 .completed-card strong {
 
   color: #15803d;
+}
+
+.leaderboard-card {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 16px;
+
+  border: 1px solid #dbe4f0;
+
+  border-radius: 14px;
+
+  margin-bottom: 12px;
+
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.leaderboard-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+
+  border-color: #bfd4ff;
+}
+
+.leaderboard-card::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  width: 5px;
+
+  height: 100%;
+
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.leaderboard-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+}
+
+.leaderboard-top h3 {
+  margin: 0;
+
+  font-size: 18px;
+
+  line-height: 1.3;
+
+  color: #0f172a;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+.leaderboard-top h3::before {
+  content: "Team";
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 3px 10px;
+
+  border-radius: 999px;
+
+  background-color: #e0ecff;
+
+  color: #2563eb;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.leaderboard-stats {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+
+  gap: 10px;
+}
+
+.leaderboard-stats p {
+  margin: 0;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background-color: #eef4ff;
+
+  font-size: 14px;
+
+  color: #334155;
+
+  font-weight: 700;
+
+  border: 1px solid #dbe7ff;
+}
+
+.leader-first {
+  border: 1px solid #f6c64e;
+
+  background: linear-gradient(180deg, #fffdf0 0%, #fff9df 100%);
+
+  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.15);
+}
+
+.leader-first::before {
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+}
+
+.leader-first .leaderboard-top h3::before {
+  background-color: #fff0c2;
+
+  color: #b45309;
+}
+
+.leader-first .leaderboard-stats p {
+  background-color: rgba(255, 248, 220, 0.95);
+
+  border-color: #f6d98f;
+}
+
+.leaderboard-section {
+  margin-top: 20px;
 }
