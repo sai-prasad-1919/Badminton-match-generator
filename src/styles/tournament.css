@@ -1,0 +1,169 @@
+.tournament-container {
+  min-height: 100vh;
+
+  padding: 30px;
+
+  background-color: #f4f6f9;
+}
+
+.tournament-header {
+  margin-bottom: 30px;
+}
+
+.tournament-header h1 {
+  font-size: 32px;
+
+  color: #1e293b;
+}
+
+.tournament-grid {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr;
+
+  gap: 20px;
+}
+
+.left-section {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.section-card {
+  background-color: white;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.section-title {
+  margin-bottom: 15px;
+
+  font-size: 20px;
+
+  color: #1e293b;
+}
+
+.court-card {
+  padding: 15px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+
+  margin-bottom: 15px;
+
+  background-color: #f8fafc;
+}
+
+.court-card h3 {
+  margin-bottom: 8px;
+
+  color: #2563eb;
+}
+
+.queue-card {
+  padding: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 8px;
+
+  margin-bottom: 10px;
+
+  background-color: white;
+}
+
+
+.leaderboard-card {
+  padding: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 8px;
+
+  margin-bottom: 12px;
+
+  background-color: #f8fafc;
+}
+
+.leaderboard-card h3 {
+  margin-bottom: 8px;
+
+  color: #2563eb;
+}
+
+
+.winner-buttons {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 12px;
+}
+
+.winner-buttons button {
+  flex: 1;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  background-color: #2563eb;
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.winner-buttons button:hover {
+  background-color: #1d4ed8;
+}
+
+
+.completion-banner {
+
+  margin-top: 15px;
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background-color: #16a34a;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: bold;
+}
+
+
+.new-tournament-btn {
+
+  margin-top: 15px;
+
+  padding: 12px 18px;
+
+  border-radius: 8px;
+
+  background-color: #dc2626;
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.new-tournament-btn:hover {
+  background-color: #b91c1c;
+}
