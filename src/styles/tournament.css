@@ -170,20 +170,16 @@
 
 
 .stats-bar {
+  display: grid;
 
-  display: flex;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 15px;
 
   margin-top: 20px;
-
-  flex-wrap: wrap;
 }
 
 .stat-card {
-
-  min-width: 160px;
-
   background-color: white;
 
   padding: 15px;
@@ -213,21 +209,45 @@
 
 
 .completed-card {
+  position: relative;
 
-  padding: 12px;
+  overflow: hidden;
 
-  border-radius: 8px;
+  padding: 16px 18px;
 
-  margin-bottom: 10px;
+  border-radius: 14px;
 
-  background-color: #ecfdf5;
+  margin-bottom: 12px;
+
+  background-color: #f0fdf4;
 
   border: 1px solid #bbf7d0;
+
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.completed-card p {
+  margin: 0;
+
+  color: #14532d;
+
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.01em;
 }
 
 .completed-card strong {
+  color: #0f5132;
 
-  color: #15803d;
+  font-weight: 700;
 }
 
 .leaderboard-card {
@@ -382,4 +402,10 @@
 
 .leaderboard-section {
   margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .stats-bar {
+    grid-template-columns: 1fr;
+  }
 }
