@@ -21,6 +21,25 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.setup-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 16px;
+}
+
+.setup-toolbar-label {
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .setup-title {
   text-align: center;
 
@@ -77,4 +96,21 @@
 
 .generate-btn:hover {
   background-color: #1d4ed8;
+}
+
+.logout-btn {
+  padding: 10px 14px;
+
+  border-radius: 8px;
+  background-color: #0f172a;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #1e293b;
 }
