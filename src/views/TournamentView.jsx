@@ -484,41 +484,74 @@ function TournamentView() {
 
         </div>
 
-        <div className="section-card">
+      </div>
 
-          <h2 className="section-title">
-            Leaderboard
-          </h2>
+      <div className="section-card leaderboard-section">
 
-          {
-            tournament.leaderboard.map((teamData) => (
+        <h2 className="section-title">
+          Leaderboard
+        </h2>
 
-              <div
-                key={teamData.team}
-                className="leaderboard-card"
-              >
+        {
+          tournament.leaderboard.map(
+            (teamData, index) => {
 
-                <h3>
-                  Team {teamData.team}
-                </h3>
+              let medal = "";
 
-                <p>
-                  Played: {teamData.played}
-                </p>
+              if (index === 0) medal = "🥇";
+              else if (index === 1) medal = "🥈";
+              else if (index === 2) medal = "🥉";
 
-                <p>
-                  Wins: {teamData.wins}
-                </p>
+              return (
 
-                <p>
-                  Losses: {teamData.losses}
-                </p>
+                <div
+                  key={teamData.team}
+                  className={`leaderboard-card ${
+                    index === 0
+                      ? "leader-first"
+                      : ""
+                  }`}
+                >
 
-              </div>
-            ))
-          }
+                  <div className="leaderboard-top">
 
-        </div>
+                    <h3>
+
+                      {medal}
+
+                      {" "}
+
+                      #{index + 1}
+
+                      {" - Team "}
+
+                      {teamData.team}
+
+                    </h3>
+
+                  </div>
+
+                  <div className="leaderboard-stats">
+
+                    <p>
+                      Played: {teamData.played}
+                    </p>
+
+                    <p>
+                      Wins: {teamData.wins}
+                    </p>
+
+                    <p>
+                      Losses: {teamData.losses}
+                    </p>
+
+                  </div>
+
+                </div>
+              );
+            }
+          )
+        }
 
       </div>
 
