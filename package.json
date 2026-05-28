@@ -2,6 +2,7 @@
   "name": "badminton-match-generator",
   "private": true,
   "version": "0.0.0",
+  "description": "A React app for generating and managing badminton tournaments.",
   "type": "module",
   "scripts": {
     "dev": "vite",

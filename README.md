@@ -1,16 +1,34 @@
-# React + Vite
+# Badminton Match Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Badminton Match Generator is a React + Vite application for creating and managing badminton tournaments.
 
-Currently, two official plugins are available:
+It helps you:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- generate teams and match schedules automatically
+- assign matches to available courts
+- track completed games and update the leaderboard
+- save tournament state so it can be restored later
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install dependencies:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+## Overview
+
+The app starts with a setup screen where you choose the number of teams and courts. After generation, the tournament view shows active courts, pending matches, completed matches, and standings.
