@@ -440,6 +440,48 @@ function TournamentView() {
 
           </div>
 
+          <h2 className="section-title">
+            Completed Matches
+          </h2>
+
+          {
+            tournament.completedMatches.length === 0 ? (
+
+              <p>
+                No matches completed yet
+              </p>
+
+            ) : (
+
+              tournament.completedMatches.map((match) => (
+
+                <div
+                  key={match.id}
+                  className="completed-card"
+                >
+
+                  <p>
+
+                    <strong>
+                      {match.winner}
+                    </strong>
+
+                    {" defeated "}
+
+                    {
+                      match.teamA === match.winner
+                        ? match.teamB
+                        : match.teamA
+                    }
+
+                  </p>
+
+                </div>
+              ))
+            )
+          }
+
+
         </div>
 
         <div className="section-card">
