@@ -8,6 +8,14 @@ It helps you:
 - assign matches to available courts
 - track completed games and update the leaderboard
 - save tournament state so it can be restored later
+- sign in with a simple session-based login before using the site
+
+## Login
+
+Use the default credentials below on the login screen:
+
+- username: admin
+- password: badminton123
 
 ## Getting Started
 

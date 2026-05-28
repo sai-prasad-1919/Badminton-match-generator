@@ -5,6 +5,7 @@ import { generateMatches } from "../utils/scheduler";
 import { createTournamentModel } from "../models/tournamentModel";
 import { assignInitialCourts } from "../utils/scheduler";
 import { generateLeaderboard } from "../utils/leaderboard";
+import { signOut } from "../utils/auth";
 
 
 import "../styles/setup.css";
@@ -13,6 +14,11 @@ function SetupScreen() {
   const navigate = useNavigate();
   const [teams, setTeams] = useState(6);
   const [courts, setCourts] = useState(2);
+
+  const handleLogout = () => {
+    signOut();
+    navigate("/login");
+  };
 
   const handleGenerate = () => {
 
@@ -80,6 +86,20 @@ function SetupScreen() {
     <div className="setup-container">
 
       <div className="setup-card">
+
+        <div className="setup-toolbar">
+          <span className="setup-toolbar-label">
+            Tournament Setup
+          </span>
+
+          <button
+            type="button"
+            className="logout-btn"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
 
         <h1 className="setup-title">
           Badminton Match Generator

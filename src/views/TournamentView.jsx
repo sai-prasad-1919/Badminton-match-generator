@@ -12,6 +12,7 @@ import {
   loadTournament,
   clearTournament
 } from "../utils/storage";
+import { signOut } from "../utils/auth";
 
 import "../styles/tournament.css";
 
@@ -46,6 +47,12 @@ function TournamentView() {
     clearTournament();
 
     navigate("/");
+  };
+
+  const handleLogout = () => {
+    clearTournament();
+    signOut();
+    navigate("/login");
   };
   
   if (!tournament) {
@@ -286,14 +293,25 @@ function TournamentView() {
 
       <div className="tournament-header">
 
-        <h1>Badminton Tournament</h1>
+        <div className="header-topbar">
+          <h1>Badminton Tournament</h1>
 
-        <button
-          className="new-tournament-btn"
-          onClick={handleNewTournament}
-        >
-          New Tournament
-        </button>
+          <div className="header-actions">
+            <button
+              className="secondary-btn"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+
+            <button
+              className="new-tournament-btn"
+              onClick={handleNewTournament}
+            >
+              New Tournament
+            </button>
+          </div>
+        </div>
 
         {
           tournament.tournamentCompleted && (
