@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import ProtectedRoute from "../components/ProtectedRoute";
+import Login from "../views/Login";
 import Home from "../views/Home";
 import TournamentView from "../views/TournamentView";
 
@@ -9,13 +11,25 @@ function AppRoutes() {
       <Routes>
 
         <Route
-          path="/"
-          element={<Home />}
+          path="/login"
+          element={<Login />}
         />
 
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path="/"
+            element={<Home />}
+          />
+
+          <Route
+            path="/tournament"
+            element={<TournamentView />}
+          />
+        </Route>
+
         <Route
-          path="/tournament"
-          element={<TournamentView />}
+          path="*"
+          element={<Login />}
         />
 
       </Routes>
