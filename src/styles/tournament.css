@@ -210,3 +210,22 @@
 
   color: #2563eb;
 }
+
+
+.completed-card {
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  margin-bottom: 10px;
+
+  background-color: #ecfdf5;
+
+  border: 1px solid #bbf7d0;
+}
+
+.completed-card strong {
+
+  color: #15803d;
+}
