@@ -22,6 +22,10 @@ export function createTournamentModel({
 
     leaderboard: [],
 
-    tournamentCompleted: false
+    tournamentCompleted: false,
+
+    schedulerCycle: 0,
+
+    recentlyPlayedTeams: {}
   };
 }

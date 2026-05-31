@@ -12,6 +12,11 @@ import {
   loadTournament,
   clearTournament
 } from "../utils/storage";
+import {
+  buildLeaderboardMap,
+  getMaxMatchesPlayed,
+  selectBestMatchForCourt
+} from "../utils/scheduler";
 import { signOut } from "../utils/auth";
 
 import "../styles/tournament.css";
@@ -164,6 +169,25 @@ function TournamentView() {
       ...tournament.pendingMatches
     ];
 
+    const schedulerCycle =
+      (tournament.schedulerCycle ?? 0) + 1;
+
+    const recentlyPlayedTeams = {
+      ...(tournament.recentlyPlayedTeams ?? {})
+    };
+
+    const playedAt = Date.now();
+
+    recentlyPlayedTeams[winnerTeam] = {
+      lastPlayedAt: playedAt,
+      lastCycle: schedulerCycle
+    };
+
+    recentlyPlayedTeams[loserTeam] = {
+      lastPlayedAt: playedAt,
+      lastCycle: schedulerCycle
+    };
+
     // =========================
     // GLOBAL RESCHEDULER
     // =========================
@@ -201,6 +225,12 @@ function TournamentView() {
     // FILL ALL FREE COURTS
     // =========================
 
+    const leaderboardMap =
+      buildLeaderboardMap(updatedLeaderboard);
+
+    const maxPlayed =
+      getMaxMatchesPlayed(updatedLeaderboard);
+
     for (
       let courtIndex = 0;
       courtIndex < freeCourtNumbers.length;
@@ -210,41 +240,22 @@ function TournamentView() {
       const courtNumber =
         freeCourtNumbers[courtIndex];
 
-      let selectedMatchIndex = -1;
+      const selection = selectBestMatchForCourt({
+        pendingMatches: updatedPendingMatches,
+        busyTeams,
+        recentlyPlayedTeams,
+        schedulerCycle,
+        leaderboardMap,
+        maxPlayed
+      });
 
-      for (
-        let i = 0;
-        i < updatedPendingMatches.length;
-        i++
-      ) {
-
-        const match =
-          updatedPendingMatches[i];
-
-        const teamAIsBusy =
-          busyTeams.has(match.teamA);
-
-        const teamBIsBusy =
-          busyTeams.has(match.teamB);
-
-        // valid playable match
-        if (!teamAIsBusy && !teamBIsBusy) {
-
-          selectedMatchIndex = i;
-
-          break;
-        }
-      }
-
-      // no valid match exists
-      if (selectedMatchIndex === -1) {
+      if (!selection) {
         continue;
       }
 
-      // assign match to free court
       const nextMatch =
         updatedPendingMatches.splice(
-          selectedMatchIndex,
+          selection.index,
           1
         )[0];
 
@@ -284,7 +295,11 @@ function TournamentView() {
       pendingMatches:
         updatedPendingMatches,
 
-      tournamentCompleted
+      tournamentCompleted,
+
+      schedulerCycle,
+
+      recentlyPlayedTeams
     });
   };
 

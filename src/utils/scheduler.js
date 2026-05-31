@@ -73,3 +73,92 @@ export function assignInitialCourts(matches, totalCourts) {
     remainingMatches
   };
 }
+
+const REST_BONUS_BOTH_RESTED = 100;
+const REST_BONUS_ONE_RESTED = 40;
+
+export function buildLeaderboardMap(leaderboard) {
+  return leaderboard.reduce((acc, teamData) => {
+    acc[teamData.team] = teamData;
+    return acc;
+  }, {});
+}
+
+export function getMaxMatchesPlayed(leaderboard) {
+  return leaderboard.reduce((maxPlayed, teamData) => {
+    return Math.max(maxPlayed, teamData.played);
+  }, 0);
+}
+
+function isTeamRecent(teamId, recentlyPlayedTeams, schedulerCycle) {
+  const record = recentlyPlayedTeams[teamId];
+
+  if (!record) {
+    return false;
+  }
+
+  return record.lastCycle >= schedulerCycle - 1;
+}
+
+export function selectBestMatchForCourt({
+  pendingMatches,
+  busyTeams,
+  recentlyPlayedTeams,
+  schedulerCycle,
+  leaderboardMap,
+  maxPlayed
+}) {
+  let bestIndex = -1;
+  let bestScore = -Infinity;
+
+  for (let i = 0; i < pendingMatches.length; i++) {
+    const match = pendingMatches[i];
+
+    if (busyTeams.has(match.teamA) || busyTeams.has(match.teamB)) {
+      continue;
+    }
+
+    const teamARecent = isTeamRecent(
+      match.teamA,
+      recentlyPlayedTeams,
+      schedulerCycle
+    );
+
+    const teamBRecent = isTeamRecent(
+      match.teamB,
+      recentlyPlayedTeams,
+      schedulerCycle
+    );
+
+    let score = 0;
+
+    if (!teamARecent && !teamBRecent) {
+      score += REST_BONUS_BOTH_RESTED;
+    } else if (teamARecent !== teamBRecent) {
+      score += REST_BONUS_ONE_RESTED;
+    }
+
+    const playedA = leaderboardMap[match.teamA]?.played ?? 0;
+    const playedB = leaderboardMap[match.teamB]?.played ?? 0;
+
+    score += (maxPlayed - playedA) + (maxPlayed - playedB);
+    score += pendingMatches.length - i;
+
+    if (
+      score > bestScore ||
+      (score === bestScore && i < bestIndex)
+    ) {
+      bestScore = score;
+      bestIndex = i;
+    }
+  }
+
+  if (bestIndex === -1) {
+    return null;
+  }
+
+  return {
+    index: bestIndex,
+    match: pendingMatches[bestIndex]
+  };
+}
