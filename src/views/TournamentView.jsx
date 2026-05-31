@@ -5,18 +5,18 @@ import {
 
 import { useEffect, useState } from "react";
 
-
-
 import {
   saveTournament,
   loadTournament,
   clearTournament
 } from "../utils/storage";
+
 import {
   buildLeaderboardMap,
   getMaxMatchesPlayed,
   selectBestMatchForCourt
 } from "../utils/scheduler";
+
 import { signOut } from "../utils/auth";
 
 import "../styles/tournament.css";
